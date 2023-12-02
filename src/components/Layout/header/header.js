@@ -10,10 +10,10 @@ import NovuNotificationCenter from '@/components/UI/novu-notification-center'
 import { useRouter } from 'next/navigation'
 
 const navigation = [
+  { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
-  { name: 'Dashboard', href: '/dashboard' },
-  { name: 'Contact', href: '/contact' },
-  { name: 'Pricing', href: '/pricing' },
+  { name: 'Dental Snap', href: '/dentalsnap' },
+  { name: 'Contact Us', href: '/contact' },
 ]
 
 export function Header() {
@@ -27,31 +27,25 @@ export function Header() {
   }
 
   return (
-    <header className="bg-gray-900">
+    <header className="absolute inset-x-0 top-0 z-50">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <Link href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-              alt=""
-            />
+          <Link href="/" className="-m-1.5 p-1.5">
+            <span className="font-bold text-gray-700">DentalCare AI</span>
           </Link>
         </div>
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
             <AlignJustify
-              color="#b0b0b0"
-              className="h-6 w-6 "
+              className="text-gray-700 h-6 w-6 "
               alt="bar mark"
               aria-hidden="true"
             />
@@ -62,13 +56,13 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold leading-6 text-white"
+              className="text-sm font-semibold leading-6 text-gray-900"
             >
               {item.name}
             </Link>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {!authUser && (
             <div>
               <Link
@@ -100,7 +94,7 @@ export function Header() {
               <Button onClick={handleLogout}>Logout</Button>
             </div>
           )}
-        </div>
+        </div> */}
       </nav>
       <Dialog
         as="div"
@@ -108,16 +102,11 @@ export function Header() {
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
       >
-        <div className="fixed inset-0 z-10" />
+        <div className="fixed inset-0 z-11" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
           <div className="flex items-center justify-between">
-            <Link href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                alt=""
-              />
+            <Link href="/" className="-m-1.5 p-1.5 text-white font-bold">
+              <span className="">DentalCare AI</span>
             </Link>
             <button
               type="button"
@@ -146,7 +135,7 @@ export function Header() {
                   </Link>
                 ))}
               </div>
-              {!authUser && (
+              {/* {!authUser && (
                 <div className="py-6">
                   <Link
                     href="/login"
@@ -168,7 +157,7 @@ export function Header() {
                   <Button onClick={handleLogout}>Logout</Button>
                   <Link href="/settings/profile">Settings</Link>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </Dialog.Panel>
