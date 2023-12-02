@@ -1,0 +1,34 @@
+{
+  "plugins": ["sonarjs"],
+  "extends": [
+    "next/babel",
+    "next/core-web-vitals",
+    "plugin:sonarjs/recommended",
+    "eslint:recommended"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "semi": ["error", "never"],
+    "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }],
+    "import/prefer-default-export": "off",
+    "sonarjs/cognitive-complexity": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "extensions": [".js", ".jsx"],
+        "map": [
+          ["@", "./src"],
+          ["@/components", "./src/components"],
+          ["@/utils", "./src/utils"],
+          ["@/supabase", "./src/supabase"],
+          ["@/hooks", "./src/hooks"],
+          ["@/firebase", "./src/firebase"]
+        ]
+      }
+    }
+  },
+  "env": {
+    "es6": true
+  }
+}
