@@ -1,54 +1,42 @@
 import { Dot } from 'lucide-react'
 
-const features = [
-  {
-    name: 'Tooth Alignment',
-    description: 'Rerum repellat labore necessitatibus reprehenderit molestiae praesentium.',
-  },
-  { name: 'List view', description: 'Corporis asperiores ea nulla temporibus asperiores non tempore assumenda aut.' },
-  {
-    name: 'Presence of Cavities or Decay',
-    description: 'In sit qui aliquid deleniti et. Ad nobis sunt omnis. Quo sapiente dicta laboriosam.',
-  },
-  {
-    name: 'Gum Health',
-    description: 'Sed rerum sunt dignissimos ullam. Iusto iure occaecati voluptate eligendi fugiat sequi.',
-  },
-  { name: 'Signs of Dental Diseases', description: 'Quos inventore harum enim nesciunt. Aut repellat rerum omnis adipisci.' },
-  { name: 'Boards', description: 'Quae sit sunt excepturi fugit veniam voluptatem ipsum commodi.' },
-  {
-    name: 'Specific Concern or Anomalies',
-    description: 'Eos laudantium repellat sed architecto earum unde incidunt. Illum sit dolores voluptatem.',
-  },
-  {
-    name: 'We need one more criteria so that we can make the grid even',
-    description: 'Nulla est saepe accusamus nostrum est est. Fugit voluptatum omnis quidem voluptatem.',
-  },
-]
+export function AnalysedData({ analysedData }) {
+  const res = analysedData?.choices[0]?.message?.content
 
-export  function AnalysedData() {
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          <div>
-            <h2 className="text-base font-semibold leading-7 text-[#0061ff]">Everything you need</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Unlocking Dental Insights</p>
+        <div className="mx-auto">
+          <div className="text-center">
+            <h2 className="text-base font-semibold leading-7 text-[#0061ff]">
+              Everything you need
+            </h2>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Unlocking Dental Insights
+            </p>
             <p className="mt-6 text-base leading-7 text-gray-600">
-            Insights from AI-Powered Assessment
+              Insights from AI-Powered Assessment
             </p>
           </div>
-          <dl className="col-span-2 grid grid-cols-1 gap-x-8 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:gap-y-16">
-            {features.map((feature) => (
-              <div key={feature.name} className="relative pl-9">
-                <dt className="font-semibold text-gray-900">
-                  <Dot className="absolute left-0 top-0 h-10 w-10 text-[#0061ff]" aria-hidden="true" />
-                  {feature.name}
-                </dt>
-                <dd className="mt-2">{feature.description}</dd>
+          <div className="relative isolate overflow-hidden bg-white py-24 sm:py-32 rounded-xl mt-16">
+            <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+              <div
+                className="absolute -bottom-8 -left-96 -z-10 transform-gpu blur-3xl sm:-bottom-64 sm:-left-40 lg:-bottom-32 lg:left-8 xl:-left-10"
+                aria-hidden="true"
+              >
+                <div
+                  className="aspect-[1266/975] w-[79.125rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
+                  style={{
+                    clipPath:
+                      'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                  }}
+                />
               </div>
-            ))}
-          </dl>
+              <div className="mx-auto">
+                <p className='text-gray-900  text-center text-xl'>{res}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
