@@ -1,10 +1,10 @@
 const analyzeImage = async (base64Image) => {
-  const apiKey = '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'
+  const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY
+
   const headers = {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${apiKey}`,
   }
-
   const payload = {
     model: 'gpt-4-vision-preview',
     messages: [
@@ -26,7 +26,6 @@ const analyzeImage = async (base64Image) => {
     ],
     max_tokens: 300,
   }
-
   try {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -39,39 +38,36 @@ const analyzeImage = async (base64Image) => {
     throw error
   }
 }
-
 const analyzeCountryEstimation = async (country, analysedData) => {
-    const apiKey = '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'; // Ensure you have your API key here
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${apiKey}`,
-    };
-  
-    const payload = {
-      model: 'gpt-3.5-turbo', // Model name is correct
-      messages: [
-        {
-          role: 'user',
-          content: `I am providing you a text. Analyze the text, if it is a dental analysis then give me the cost estimation to fix dental issues in the country that I'm also providing you. If it isn't a dental analysis then give an error. The dental analysis is -> ${analysedData?.choices[0]?.message?.content} and the respective country is ${country.name}`,
-        },
-      ],
-      max_tokens: 300,
-    };
-  
-    try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(payload),
-      });
-      const jsonResponse = await response.json();
-      console.log(jsonResponse);
-      return jsonResponse;
-    } catch (error) {
-      console.error('Error in OpenAI API call:', error);
-      throw error;
-    }
-  };
-  
-
+  console.log('country :', country)
+  console.log('analysed data ', analysedData?.choices[0]?.message?.content)
+  const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${apiKey}`,
+  }
+  const payload = {
+    model: 'gpt-3.5-turbo', // Model name is correct
+    messages: [
+      {
+        role: 'user',
+        content: `I am providing you a dental analysis report. Based on this report, please estimate the cost for treating any identified dental issues in [${country.name}]. The dental analysis includes: [${analysedData?.choices[0]?.message?.content}]. Consider the healthcare standards and pricing in [${country.name}] for the estimation.`,
+      },
+    ],
+    max_tokens: 300,
+  }
+  try {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(payload),
+    })
+    const jsonResponse = await response.json()
+    console.log(jsonResponse)
+    return jsonResponse
+  } catch (error) {
+    console.error('Error in OpenAI API call:', error)
+    throw error
+  }
+}
 export { analyzeImage, analyzeCountryEstimation }
